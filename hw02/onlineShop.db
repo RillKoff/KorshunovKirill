@@ -1,0 +1,22 @@
+CREATE TABLE Users(
+userId SERIAL PRIMARY KEY,
+login VARCHAR(255),
+password VARCHAR(255),
+email VARCHAR(255) NOT NULL
+)
+
+CREATE TABLE Products(
+productId SERIAL PRIMARY KEY,
+productName VARCHAR(255),
+productCategory VARCHAR(255),
+productPrice INT,
+)
+
+CREATE TABLE Orders(
+orderId SERIAL PRIMARY KEY,
+productId INT REFERENCES Products(productId),
+userId INT REFERENCES Users(userId),
+orderDate DATETIME,
+deliveryDate DATE,
+deliveryStatus ENUM('Ожидание оплаты', 'Отправлено', 'Доставлено')
+)
